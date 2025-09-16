@@ -4,9 +4,9 @@ import { useSearchParams, useRouter } from "next/navigation"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Mail, CheckCircle2 } from "lucide-react"
-import { useEffect } from "react"
+import { useEffect, Suspense } from "react"
 
-export default function CheckEmailPage() {
+function CheckEmailContent() {
   const router = useRouter()
   const params = useSearchParams()
   const sent = params.get("sent") === "1"
@@ -29,7 +29,7 @@ export default function CheckEmailPage() {
             <div className="flex items-start gap-3 rounded-md border p-3 text-sm">
               <Mail className="mt-0.5 h-4 w-4 shrink-0" />
               <div>
-                <p>Busca un email con el asunto <strong>“Confirm your sign up”</strong>.</p>
+                <p>Busca un email con el asunto <strong>"Confirm your sign up"</strong>.</p>
                 {email && <p className="text-muted-foreground mt-1">Enviado a: <strong>{email}</strong></p>}
                 <p className="text-muted-foreground mt-1">Si no lo ves, revisa <strong>Spam</strong> o <strong>Promociones</strong>.</p>
               </div>
@@ -63,5 +63,13 @@ export default function CheckEmailPage() {
         </CardContent>
       </Card>
     </div>
+  )
+}
+
+export default function CheckEmailPage() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <CheckEmailContent />
+    </Suspense>
   )
 }
