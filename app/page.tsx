@@ -62,19 +62,24 @@ export default function LandingPage() {
               <div className="pointer-events-none absolute inset-x-0 top-0 z-0 h-20 md:h-24 bg-gradient-to-b from-transparent to-background dark:to-black"></div>
               {/* Grid de 4 imágenes, manteniendo el mismo tratamiento de borde/gradiente por tarjeta */}
               <div className="relative z-10 grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
-        {[1, 2, 3, 4].map((i) => (
+                {[
+                  { id: 1, src: "/skull-clock-tattoo.png", alt: "Diseño de tatuaje con calavera y reloj" },
+                  { id: 2, src: "/wolf-tattoo.png", alt: "Diseño de tatuaje de lobo realista" },
+                  { id: 3, src: "/angel-tattoo.png", alt: "Diseño de tatuaje de ángel con alas" },
+                  { id: 4, src: "/flower-tattoo.png", alt: "Diseño de tatuaje de flor ornamental" }
+                ].map((item) => (
                   <div
-                    key={i}
-          className="group relative rounded-xl overflow-hidden shadow-2xl border border-border/40 bg-gradient-to-b from-background to-muted/20"
+                    key={item.id}
+                    className="group relative rounded-xl overflow-hidden shadow-2xl border border-border/40 bg-gradient-to-b from-background to-muted/20"
                   >
                     <div className="relative aspect-square">
                       <Image
-                        src={`/placeholder.jpg`}
-                        alt={`Vista ${i}`}
+                        src={item.src}
+                        alt={item.alt}
                         fill
                         className="object-cover transition-transform duration-300 ease-out group-hover:scale-[1.03] will-change-transform transform-gpu"
                         sizes="(max-width:768px) 50vw, 25vw"
-                        priority={i === 1}
+                        priority={item.id === 1}
                       />
                     </div>
                     <div className="pointer-events-none absolute inset-0 rounded-xl ring-1 ring-inset ring-black/10 dark:ring-white/10"></div>
@@ -207,7 +212,7 @@ export default function LandingPage() {
                     "La calidad del diseño fue impecable y mi tatuador lo usó tal cual, sin tener que retocar nada.",
                   author: "Laura M.",
                   role: "Madrid",
-                  avatar: "https://randomuser.me/api/portraits/women/68.jpg",
+                  avatar: "/placeholder-user.jpg",
                   rating: 5,
                 },
                 {
@@ -215,7 +220,7 @@ export default function LandingPage() {
                     "En segundos tuve varias opciones originales; elegí una que encajó perfecto con mi idea y el tatuador trabajó rapidísimo.",
                   author: "Diego R.",
                   role: "Valencia",
-                  avatar: "https://randomuser.me/api/portraits/men/75.jpg",
+                  avatar: "/placeholder-user.jpg",
                   rating: 5,
                 },
                 {
@@ -223,7 +228,7 @@ export default function LandingPage() {
                     "Los trazos y proporciones estaban muy cuidados y el archivo le facilitó muchísimo el trabajo a mi tatuadora.",
                   author: "Claudia S.",
                   role: "Barcelona",
-                  avatar: "https://randomuser.me/api/portraits/women/65.jpg",
+                  avatar: "/placeholder-user.jpg",
                   rating: 5,
                 },
                 {
@@ -231,7 +236,7 @@ export default function LandingPage() {
                     "Me generó el diseño en menos de medio minuto y era totalmente original; mi tatuador agradeció lo limpio de las líneas.",
                   author: "Sergio P.",
                   role: "Sevilla",
-                  avatar: "https://randomuser.me/api/portraits/men/28.jpg",
+                  avatar: "/placeholder-user.jpg",
                   rating: 5,
                 },
                 {
@@ -239,7 +244,7 @@ export default function LandingPage() {
                     "Probé varios estilos y el minimalista encajó perfecto; la plantilla salió lista para transferir sin ajustes.",
                   author: "Marta G.",
                   role: "Bilbao",
-                  avatar: "https://randomuser.me/api/portraits/women/9.jpg",
+                  avatar: "/placeholder-user.jpg",
                   rating: 5,
                 },
                 {
@@ -247,7 +252,7 @@ export default function LandingPage() {
                     "La resolución es altísima y pude revisar cada detalle antes de llevarlo al estudio, lo que ahorró tiempo al tatuador.",
                   author: "Andrés L.",
                   role: "Zaragoza",
-                  avatar: "https://randomuser.me/api/portraits/men/11.jpg",
+                  avatar: "/placeholder-user.jpg",
                   rating: 5,
                 },
                 {
@@ -255,7 +260,7 @@ export default function LandingPage() {
                     "La IA captó mi idea a la primera y creó una variante blackwork súper original; la artista lo calcó directamente.",
                   author: "Paula T.",
                   role: "Málaga",
-                  avatar: "https://randomuser.me/api/portraits/women/21.jpg",
+                  avatar: "/placeholder-user.jpg",
                   rating: 5,
                 },
                 {
@@ -263,7 +268,7 @@ export default function LandingPage() {
                     "El sombreado y la composición venían muy cuidados; convirtió mi briefing en un diseño listo y la sesión fue más corta.",
                   author: "Iván C.",
                   role: "A Coruña",
-                  avatar: "https://randomuser.me/api/portraits/men/32.jpg",
+                  avatar: "/placeholder-user.jpg",
                   rating: 5,
                 },
                 {
@@ -271,7 +276,7 @@ export default function LandingPage() {
                     "Rápido y preciso: exporté el archivo como me pidió el tatuador y me dijo que así da gusto trabajar.",
                   author: "Nuria V.",
                   role: "Alicante",
-                  avatar: "https://randomuser.me/api/portraits/women/14.jpg",
+                  avatar: "/placeholder-user.jpg",
                   rating: 5,
                 },
               ].map((testimonial, i) => (
