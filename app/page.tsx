@@ -212,7 +212,7 @@ export default function LandingPage() {
                     "La calidad del diseño fue impecable y mi tatuador lo usó tal cual, sin tener que retocar nada.",
                   author: "Laura M.",
                   role: "Madrid",
-                  avatar: "/placeholder-user.jpg",
+                  avatar: "/avatar-1.jpg",
                   rating: 5,
                 },
                 {
@@ -220,7 +220,7 @@ export default function LandingPage() {
                     "En segundos tuve varias opciones originales; elegí una que encajó perfecto con mi idea y el tatuador trabajó rapidísimo.",
                   author: "Diego R.",
                   role: "Valencia",
-                  avatar: "/placeholder-user.jpg",
+                  avatar: "/avatar-2.jpg",
                   rating: 5,
                 },
                 {
@@ -228,7 +228,7 @@ export default function LandingPage() {
                     "Los trazos y proporciones estaban muy cuidados y el archivo le facilitó muchísimo el trabajo a mi tatuadora.",
                   author: "Claudia S.",
                   role: "Barcelona",
-                  avatar: "/placeholder-user.jpg",
+                  avatar: "/avatar-3.jpg",
                   rating: 5,
                 },
                 {
@@ -236,7 +236,7 @@ export default function LandingPage() {
                     "Me generó el diseño en menos de medio minuto y era totalmente original; mi tatuador agradeció lo limpio de las líneas.",
                   author: "Sergio P.",
                   role: "Sevilla",
-                  avatar: "/placeholder-user.jpg",
+                  avatar: "/avatar-4.jpg",
                   rating: 5,
                 },
                 {
@@ -244,7 +244,7 @@ export default function LandingPage() {
                     "Probé varios estilos y el minimalista encajó perfecto; la plantilla salió lista para transferir sin ajustes.",
                   author: "Marta G.",
                   role: "Bilbao",
-                  avatar: "/placeholder-user.jpg",
+                  avatar: "/avatar-5.jpg",
                   rating: 5,
                 },
                 {
@@ -252,7 +252,7 @@ export default function LandingPage() {
                     "La resolución es altísima y pude revisar cada detalle antes de llevarlo al estudio, lo que ahorró tiempo al tatuador.",
                   author: "Andrés L.",
                   role: "Zaragoza",
-                  avatar: "/placeholder-user.jpg",
+                  avatar: "/avatar-6.jpg",
                   rating: 5,
                 },
                 {
@@ -260,7 +260,7 @@ export default function LandingPage() {
                     "La IA captó mi idea a la primera y creó una variante blackwork súper original; la artista lo calcó directamente.",
                   author: "Paula T.",
                   role: "Málaga",
-                  avatar: "/placeholder-user.jpg",
+                  avatar: "/avatar-7.jpg",
                   rating: 5,
                 },
                 {
@@ -268,7 +268,7 @@ export default function LandingPage() {
                     "El sombreado y la composición venían muy cuidados; convirtió mi briefing en un diseño listo y la sesión fue más corta.",
                   author: "Iván C.",
                   role: "A Coruña",
-                  avatar: "/placeholder-user.jpg",
+                  avatar: "/avatar-8.jpg",
                   rating: 5,
                 },
                 {
@@ -276,7 +276,7 @@ export default function LandingPage() {
                     "Rápido y preciso: exporté el archivo como me pidió el tatuador y me dijo que así da gusto trabajar.",
                   author: "Nuria V.",
                   role: "Alicante",
-                  avatar: "/placeholder-user.jpg",
+                  avatar: "/avatar-9.jpg",
                   rating: 5,
                 },
               ].map((testimonial, i) => (
