@@ -197,11 +197,11 @@ export default function LandingPage() {
           <div className="container px-4 md:px-6">
             <div className="flex flex-col items-center justify-center space-y-4 text-center mb-12 animate-in">
               <Badge className="rounded-full px-4 py-1.5 text-sm font-medium" variant="secondary">
-                Testimonials
+                Valoraciones
               </Badge>
-              <h2 className="text-3xl md:text-4xl font-bold tracking-tight">Loved by Teams Worldwide</h2>
+              <h2 className="text-3xl md:text-4xl font-bold tracking-tight">Confiado por amantes del tatuaje en todo el mundo</h2>
               <p className="max-w-[800px] text-muted-foreground md:text-lg">
-                Don't just take our word for it. See what our customers have to say about their experience.
+                Lee las reseñas de quienes ya han creado sus diseños con nuestro generador de tatuajes con IA.
               </p>
             </div>
 
