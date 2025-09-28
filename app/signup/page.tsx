@@ -83,7 +83,7 @@ export default function SignupPage() {
     <div className="flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
       <Card className="w-full max-w-md shadow-lg">
         <CardHeader className="text-center">
-          <CardTitle className="text-3xl font-bold">Únete a AI Tattoo Gratis</CardTitle>
+          <CardTitle className="text-3xl font-bold">Únete a Trazo AI Gratis</CardTitle>
           <CardDescription>Crea tu cuenta para empezar a diseñar</CardDescription>
         </CardHeader>
         <CardContent>
