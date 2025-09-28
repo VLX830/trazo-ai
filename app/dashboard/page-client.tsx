@@ -1,5 +1,6 @@
 "use client"
 
+import { useStripe } from '@/hooks/use-stripe'
 import type React from "react"
 import { useEffect, useState, useRef } from "react"
 import Image from "next/image"
@@ -16,6 +17,8 @@ import { Download, Trash2, History, User, CreditCard, Shield, ChevronLeft, Chevr
 import { TattooForm } from "@/components/tattoo-form"
 
 export default function DashboardPage() {
+  const { redirectToCheckout, loading } = useStripe()
+  const [checkoutPending, setCheckoutPending] = useState(false)
   const [generatedImage, setGeneratedImage] = useState<string | null>(null)
   const [myImages, setMyImages] = useState<Array<{ id: string; url: string; prompt: string }>>([])
   const [loadingMy, setLoadingMy] = useState(false)
@@ -141,6 +144,17 @@ export default function DashboardPage() {
 
   const toggleSettingPanel = (panelId: string) => {
     setActiveSettingPanel(activeSettingPanel === panelId ? null : panelId)
+  }
+
+  const handleSubscribe = async (planId: string) => {
+    if (loading || checkoutPending) return
+    setCheckoutPending(true)
+    try {
+      await redirectToCheckout(planId)
+    } finally {
+      // Si el usuario no fue redirigido (error), permitir reintento
+      setCheckoutPending(false)
+    }
   }
 
   // Obtener las imágenes visibles
@@ -419,8 +433,12 @@ export default function DashboardPage() {
               </div>
               
               <div>
-                <Button className="w-full h-11 text-base font-medium bg-black text-white hover:bg-gray-800 transition-colors rounded-md">
-                  Obtener Pro
+                <Button 
+                  className="w-full h-11 text-base font-medium bg-black text-white hover:bg-gray-800 transition-colors rounded-md"
+                  onClick={() => handleSubscribe('pro')}
+                  disabled={loading || checkoutPending}
+                >
+                  {loading || checkoutPending ? 'Procesando...' : 'Obtener Pro'}
                 </Button>
               </div>
             </CardContent>
@@ -493,8 +511,12 @@ export default function DashboardPage() {
                 </div>
                 
                 <div>
-                  <Button className="w-full h-11 text-base font-medium bg-black text-white hover:bg-gray-800 transition-colors rounded-md">
-                    Obtener Ultra
+                  <Button 
+                    className="w-full h-11 text-base font-medium bg-black text-white hover:bg-gray-800 transition-colors rounded-md"
+                      onClick={() => handleSubscribe('ultra')}
+                      disabled={loading || checkoutPending}
+                    >
+                      {loading || checkoutPending ? 'Procesando...' : 'Obtener Ultra'}
                   </Button>
                 </div>
               </CardContent>

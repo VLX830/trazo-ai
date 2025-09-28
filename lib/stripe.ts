@@ -1,19 +1,7 @@
-import Stripe from 'stripe'
+// Este archivo mantiene compatibilidad con importaciones antiguas.
+// Importa explícitamente las implementaciones server/client desde
+// `lib/stripe.server` y `lib/stripe.client`. Evita ejecutar código
+// que use la secret en el bundle del cliente.
 
-if (!process.env.STRIPE_SECRET_KEY) {
-  throw new Error('STRIPE_SECRET_KEY is not set')
-}
-
-export const stripe = new Stripe(process.env.STRIPE_SECRET_KEY, {
-  apiVersion: '2025-08-27.basil',
-})
-
-export const getStripe = () => {
-  if (!process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY) {
-    throw new Error('NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY is not set')
-  }
-  
-  return require('@stripe/stripe-js').loadStripe(
-    process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY
-  )
-}
+export { getStripe } from './stripe.client'
+export { stripe } from './stripe.server'

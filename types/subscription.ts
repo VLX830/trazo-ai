@@ -5,6 +5,7 @@ export interface Plan {
   interval: 'month' | 'year'
   features: string[]
   stripePriceId: string
+  popular?: boolean
 }
 
 export interface UserSubscription {
@@ -21,13 +22,14 @@ export interface UserSubscription {
   generationsLimit: number
 }
 
+// Remover process.env de aquí - solo usar en server-side
 export const PLANS: Record<string, Plan> = {
   free: {
     id: 'free',
     name: 'Gratuito',
     price: 0,
     interval: 'month',
-    features: ['10 diseños por mes', 'Resolución estándar', 'Estilos básicos'],
+    features: ['5 diseños por mes', 'Resolución estándar', 'Estilos básicos'],
     stripePriceId: ''
   },
   pro: {
@@ -36,7 +38,7 @@ export const PLANS: Record<string, Plan> = {
     price: 5,
     interval: 'month',
     features: ['Diseños ilimitados', 'Resolución alta', 'Todos los estilos', 'Soporte prioritario'],
-    stripePriceId: 'prod_T33dJ8JAAZShuX' // 👈 REEMPLAZAR AQUÍ
+    stripePriceId: 'price_1S6xVnAOjgdVu8eku2vRlIV9' // Hardcodear aquí o usar función server-side
   },
   ultra: {
     id: 'ultra',
@@ -44,6 +46,7 @@ export const PLANS: Record<string, Plan> = {
     price: 48,
     interval: 'year',
     features: ['Funciones avanzadas', 'Resolución máxima', 'Acceso anticipado', 'Soporte dedicado'],
-    stripePriceId: 'prod_T33esQjQzUKQkW' // 👈 REEMPLAZAR AQUÍ
+    stripePriceId: 'price_1S6xXFAOjgdVu8ekHcUS5OZW', // Hardcodear aquí o usar función server-side
+    popular: true
   }
 }

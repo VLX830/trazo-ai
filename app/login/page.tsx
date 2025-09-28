@@ -54,7 +54,7 @@ export default function LoginPage() {
     <div className="flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
       <Card className="w-full max-w-md shadow-lg">
         <CardHeader className="text-center">
-          <CardTitle className="text-3xl font-bold">Inicia Sesión en AI Tattoo</CardTitle>
+          <CardTitle className="text-3xl font-bold">Inicia Sesión en Trazo AI</CardTitle>
           <CardDescription>Accede a tu cuenta para diseñar tu tatuaje</CardDescription>
         </CardHeader>
         <CardContent>

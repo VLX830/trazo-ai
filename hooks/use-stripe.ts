@@ -1,10 +1,10 @@
 import { useState } from 'react'
-import { getStripe } from '@/lib/stripe'
+import { getStripe } from '@/lib/stripe.client'
 
 export function useStripe() {
   const [loading, setLoading] = useState(false)
 
-  const redirectToCheckout = async (planId: string, userId: string) => {
+  const redirectToCheckout = async (planId: string) => {
     setLoading(true)
     
     try {
@@ -14,8 +14,12 @@ export function useStripe() {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ planId, userId }),
+        body: JSON.stringify({ planId }),
       })
+
+      if (!response.ok) {
+        throw new Error('Failed to create checkout session')
+      }
 
       const { sessionId, error } = await response.json()
 
