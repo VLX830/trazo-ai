@@ -40,6 +40,8 @@ export async function POST(req: NextRequest) {
 
     // Obtener Price ID desde variables de entorno
     const priceId = PRICE_IDS[planId as keyof typeof PRICE_IDS]
+    // Logging útil: indicar qué plan se resolvió y si existe precio configurado (no imprimir el value)
+    console.log('[stripe/checkout] resolved plan:', planId, 'hasPriceConfigured:', !!priceId)
     if (!priceId) {
       console.error('Missing price id for plan:', planId)
       return NextResponse.json(

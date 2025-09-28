@@ -19,6 +19,8 @@ import { TattooForm } from "@/components/tattoo-form"
 export default function DashboardPage() {
   const { redirectToCheckout, loading } = useStripe()
   const [checkoutPending, setCheckoutPending] = useState(false)
+  // Ref to synchronously prevent concurrent checkout requests (avoids race where two clicks start)
+  const checkoutProcessingRef = useRef(false)
   const [generatedImage, setGeneratedImage] = useState<string | null>(null)
   const [myImages, setMyImages] = useState<Array<{ id: string; url: string; prompt: string }>>([])
   const [loadingMy, setLoadingMy] = useState(false)
@@ -147,12 +149,15 @@ export default function DashboardPage() {
   }
 
   const handleSubscribe = async (planId: string) => {
-    if (loading || checkoutPending) return
+    if (loading || checkoutPending || checkoutProcessingRef.current) return
+    // set a synchronous guard
+    checkoutProcessingRef.current = true
     setCheckoutPending(true)
     try {
       await redirectToCheckout(planId)
     } finally {
       // Si el usuario no fue redirigido (error), permitir reintento
+      checkoutProcessingRef.current = false
       setCheckoutPending(false)
     }
   }
