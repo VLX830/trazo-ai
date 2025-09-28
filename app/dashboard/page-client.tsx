@@ -18,7 +18,8 @@ import { TattooForm } from "@/components/tattoo-form"
 
 export default function DashboardPage() {
   const { redirectToCheckout, loading } = useStripe()
-  const [checkoutPending, setCheckoutPending] = useState(false)
+  // planId currently pending (or null). Shows 'Procesando...' only on the clicked plan.
+  const [checkoutPendingPlan, setCheckoutPendingPlan] = useState<string | null>(null)
   // Ref to synchronously prevent concurrent checkout requests (avoids race where two clicks start)
   const checkoutProcessingRef = useRef(false)
   const [generatedImage, setGeneratedImage] = useState<string | null>(null)
@@ -149,16 +150,16 @@ export default function DashboardPage() {
   }
 
   const handleSubscribe = async (planId: string) => {
-    if (loading || checkoutPending || checkoutProcessingRef.current) return
+    if (loading || checkoutProcessingRef.current) return
     // set a synchronous guard
     checkoutProcessingRef.current = true
-    setCheckoutPending(true)
+    setCheckoutPendingPlan(planId)
     try {
       await redirectToCheckout(planId)
     } finally {
       // Si el usuario no fue redirigido (error), permitir reintento
       checkoutProcessingRef.current = false
-      setCheckoutPending(false)
+      setCheckoutPendingPlan(null)
     }
   }
 
@@ -441,9 +442,9 @@ export default function DashboardPage() {
                 <Button 
                   className="w-full h-11 text-base font-medium bg-black text-white hover:bg-gray-800 transition-colors rounded-md"
                   onClick={(e) => { e.stopPropagation(); handleSubscribe('pro') }}
-                  disabled={loading || checkoutPending}
+                  disabled={loading || checkoutPendingPlan !== null}
                 >
-                  {loading || checkoutPending ? 'Procesando...' : 'Obtener Pro'}
+                  {loading || checkoutPendingPlan === 'pro' ? 'Procesando...' : 'Obtener Pro'}
                 </Button>
               </div>
             </CardContent>
@@ -519,9 +520,9 @@ export default function DashboardPage() {
                   <Button 
                     className="w-full h-11 text-base font-medium bg-black text-white hover:bg-gray-800 transition-colors rounded-md"
                     onClick={(e) => { e.stopPropagation(); handleSubscribe('ultra') }}
-                    disabled={loading || checkoutPending}
+                    disabled={loading || checkoutPendingPlan !== null}
                   >
-                    {loading || checkoutPending ? 'Procesando...' : 'Obtener Ultra'}
+                    {loading || checkoutPendingPlan === 'ultra' ? 'Procesando...' : 'Obtener Ultra'}
                   </Button>
                 </div>
               </CardContent>
