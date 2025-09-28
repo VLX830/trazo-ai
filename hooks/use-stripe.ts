@@ -8,11 +8,15 @@ export function useStripe() {
     setLoading(true)
     
     try {
+      // generate a short request id to correlate client/server logs
+      const requestId = `${Date.now()}-${Math.random().toString(36).slice(2,8)}`
+      console.log('[useStripe] redirectToCheckout called for', planId, 'requestId:', requestId)
       // Crear checkout session
       const response = await fetch('/api/stripe/checkout', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
+          'x-request-id': requestId,
         },
         body: JSON.stringify({ planId }),
       })

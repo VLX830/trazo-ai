@@ -12,9 +12,10 @@ export async function POST(req: NextRequest) {
   try {
     const body = await req.json()
     const planId = body?.planId
+    const requestId = req.headers.get('x-request-id') || 'no-request-id'
 
-    // Logging temporal para depuración
-    console.log('[stripe/checkout] incoming body:', JSON.stringify(body))
+  // Logging temporal para depuración
+  console.log('[stripe/checkout] incoming body:', JSON.stringify(body), 'requestId:', requestId)
 
     if (!planId) {
       console.warn('[stripe/checkout] missing planId in request body')

@@ -440,7 +440,7 @@ export default function DashboardPage() {
               <div>
                 <Button 
                   className="w-full h-11 text-base font-medium bg-black text-white hover:bg-gray-800 transition-colors rounded-md"
-                  onClick={() => handleSubscribe('pro')}
+                  onClick={(e) => { e.stopPropagation(); handleSubscribe('pro') }}
                   disabled={loading || checkoutPending}
                 >
                   {loading || checkoutPending ? 'Procesando...' : 'Obtener Pro'}
@@ -518,10 +518,10 @@ export default function DashboardPage() {
                 <div>
                   <Button 
                     className="w-full h-11 text-base font-medium bg-black text-white hover:bg-gray-800 transition-colors rounded-md"
-                      onClick={() => handleSubscribe('ultra')}
-                      disabled={loading || checkoutPending}
-                    >
-                      {loading || checkoutPending ? 'Procesando...' : 'Obtener Ultra'}
+                    onClick={(e) => { e.stopPropagation(); handleSubscribe('ultra') }}
+                    disabled={loading || checkoutPending}
+                  >
+                    {loading || checkoutPending ? 'Procesando...' : 'Obtener Ultra'}
                   </Button>
                 </div>
               </CardContent>
