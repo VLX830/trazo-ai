@@ -6,6 +6,7 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 import { Badge } from "@/components/ui/badge"
 import { Card, CardContent } from "@/components/ui/card"
 import { TattooForm } from "@/components/tattoo-form"
+import PricingSection from "@/components/pricing-section"
 
 export default function LandingPage() {
   return (
@@ -302,6 +303,8 @@ export default function LandingPage() {
                         <div>
                           <p className="font-medium">{testimonial.author}</p>
                           <p className="text-sm text-muted-foreground">{testimonial.role}</p>
+
+                    {/* Pricing section was removed per revert */}
                         </div>
                       </div>
                     </CardContent>
@@ -312,7 +315,10 @@ export default function LandingPage() {
           </div>
         </section>
 
-        {/* FAQ Section */}
+  {/* Pricing Section (landing) */}
+  <PricingSection />
+
+  {/* FAQ Section */}
         <section id="faq" className="w-full py-20 md:py-32">
           <div className="container px-4 md:px-6">
             <div className="flex flex-col items-center justify-center space-y-4 text-center mb-12 animate-in">

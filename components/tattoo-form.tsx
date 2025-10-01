@@ -155,7 +155,11 @@ export function TattooForm({ onStart, onSuccess, source }: TattooFormProps) {
         </div>
         <Button
           type="submit"
-          className="w-full mt-6 h-12 rounded-lg font-semibold text-base"
+          className={
+            source === "dashboard"
+              ? "w-full mt-6 h-12 rounded-lg font-semibold text-base bg-black text-white hover:bg-gray-800 transition-colors disabled:opacity-60"
+              : "w-full mt-6 h-12 rounded-lg font-semibold text-base bg-primary text-primary-foreground hover:bg-primary/90 transition-colors disabled:opacity-60"
+          }
           disabled={isLoading}
         >
           {isLoading ? (

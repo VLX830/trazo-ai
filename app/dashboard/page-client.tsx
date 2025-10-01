@@ -150,7 +150,7 @@ export default function DashboardPage() {
   }
 
   const handleSubscribe = async (planId: string) => {
-    if (loading || checkoutProcessingRef.current) return
+    if (checkoutProcessingRef.current) return
     // set a synchronous guard
     checkoutProcessingRef.current = true
     setCheckoutPendingPlan(planId)
@@ -162,6 +162,24 @@ export default function DashboardPage() {
       setCheckoutPendingPlan(null)
     }
   }
+
+  // Reset pending state when returning from Stripe or when user navigates back
+  useEffect(() => {
+    // clear any stale processing flag on mount
+    checkoutProcessingRef.current = false
+    const params = new URLSearchParams(window.location.search)
+    if (params.get('success') === 'true' || params.get('canceled') === 'true') {
+      setCheckoutPendingPlan(null)
+    }
+
+    const onPop = () => {
+      checkoutProcessingRef.current = false
+      setCheckoutPendingPlan(null)
+    }
+
+    window.addEventListener('popstate', onPop)
+    return () => window.removeEventListener('popstate', onPop)
+  }, [])
 
   // Obtener las imágenes visibles
   const visibleImages = myImages.slice(currentIndex, currentIndex + IMAGES_PER_VIEW)
@@ -237,7 +255,7 @@ export default function DashboardPage() {
                   const generarSection = document.getElementById('generar')
                   generarSection?.scrollIntoView({ behavior: 'smooth' })
                 }}
-                className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700"
+                className="bg-black text-white hover:bg-gray-800 transition-colors"
               >
                 Crear mi primer diseño
               </Button>
@@ -381,7 +399,10 @@ export default function DashboardPage() {
               </div>
               
               <div>
-                <Button className="w-full h-11 text-base font-medium bg-black text-white hover:bg-gray-800 transition-colors rounded-md">
+                <Button
+                  className="w-full h-11 text-base font-medium bg-black text-white hover:bg-gray-800 transition-colors rounded-md"
+                  onClick={() => { window.location.href = '/signup' }}
+                >
                   Plan Actual
                 </Button>
               </div>
@@ -442,9 +463,9 @@ export default function DashboardPage() {
                 <Button 
                   className="w-full h-11 text-base font-medium bg-black text-white hover:bg-gray-800 transition-colors rounded-md"
                   onClick={(e) => { e.stopPropagation(); handleSubscribe('pro') }}
-                  disabled={loading || checkoutPendingPlan !== null}
+                  disabled={checkoutPendingPlan !== null}
                 >
-                  {loading || checkoutPendingPlan === 'pro' ? 'Procesando...' : 'Obtener Pro'}
+                  {checkoutPendingPlan === 'pro' ? 'Procesando...' : 'Obtener Pro'}
                 </Button>
               </div>
             </CardContent>
@@ -520,9 +541,9 @@ export default function DashboardPage() {
                   <Button 
                     className="w-full h-11 text-base font-medium bg-black text-white hover:bg-gray-800 transition-colors rounded-md"
                     onClick={(e) => { e.stopPropagation(); handleSubscribe('ultra') }}
-                    disabled={loading || checkoutPendingPlan !== null}
+                    disabled={checkoutPendingPlan !== null}
                   >
-                    {loading || checkoutPendingPlan === 'ultra' ? 'Procesando...' : 'Obtener Ultra'}
+                    {checkoutPendingPlan === 'ultra' ? 'Procesando...' : 'Obtener Ultra'}
                   </Button>
                 </div>
               </CardContent>
@@ -832,7 +853,7 @@ export default function DashboardPage() {
                 </AccordionContent>
               </AccordionItem>
               <AccordionItem value="item-3">
-                <AccordionTrigger>¿Puedo cancelar mi subscripción?</AccordionTrigger>
+                <AccordionTrigger>¿Puedo cancelar mi suscripción?</AccordionTrigger>
                 <AccordionContent>
                   Sí, puedes cancelar tu suscripción en cualquier momento desde la sección de Facturación en tus
                   Ajustes de Cuenta.

@@ -75,10 +75,18 @@ function DashboardLayout({ children }: { children: React.ReactNode }) {
   const SidebarContent = () => (
     <div className="flex h-full flex-col gap-2 overflow-y-auto">
   <div className="flex h-14 items-center border-b px-4 lg:h-[60px] lg:px-6 sticky top-0 z-20 bg-background">
-        <Link href="/" className="flex items-center gap-3 font-semibold">
+          <Link href="/" className="flex items-center gap-3 font-semibold">
           <LogoMark className="h-9 w-9 sm:h-10 sm:w-10 text-foreground" />
-          <span className={cn("text-base sm:text-lg md:text-xl tracking-tight", isCollapsed && "hidden")}>
-            Inktelligence
+          <span
+            className={cn("text-base sm:text-lg md:text-xl tracking-tight text-foreground transition-colors hover:text-primary", isCollapsed && "hidden")}
+            style={{
+              fontFamily: '"SF Pro Display", "Helvetica Neue", -apple-system, BlinkMacSystemFont, system-ui, sans-serif',
+              fontWeight: 900,
+              letterSpacing: '-0.025em',
+              fontVariationSettings: '"wght" 900',
+            }}
+          >
+            TRAZO AI
           </span>
         </Link>
       </div>

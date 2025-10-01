@@ -9,25 +9,25 @@ import { ConditionalSiteFooter } from "@/components/conditional-site-footer"
 const inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://inktelligence.com"),
+  metadataBase: new URL("https://www.trazoai.com/"),
   alternates: {
     canonical: "/",
   },
-  title: "Inktelligence - Diseña tu tatuaje perfecto",
+  title: "Trazo AI - Diseña tu tatuaje perfecto",
   description:
     "Utiliza el poder de la IA para crear diseños de tatuajes únicos y personalizados. De la idea a la tinta, te ayudamos a visualizar tu próximo tatuaje.",
   openGraph: {
-    title: "Inktelligence - Diseña tu tatuaje perfecto",
+    title: "Trazo AI - Diseña tu tatuaje perfecto",
     description:
       "Utiliza el poder de la IA para crear diseños de tatuajes únicos y personalizados. De la idea a la tinta, te ayudamos a visualizar tu próximo tatuaje.",
     url: "/",
-    siteName: "Inktelligence",
+    siteName: "Trazo AI",
     images: [
       {
         url: "logo.png",
         width: 1200,
         height: 630,
-        alt: "Inktelligence",
+        alt: "Trazo AI",
       },
     ],
     locale: "es_ES",
@@ -35,7 +35,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Inktelligence - Diseña tu tatuaje perfecto",
+    title: "Trazo AI - Diseña tu tatuaje perfecto",
     description:
       "Utiliza el poder de la IA para crear diseños de tatuajes únicos y personalizados. De la idea a la tinta, te ayudamos a visualizar tu próximo tatuaje.",
     images: ["logo.png"],
